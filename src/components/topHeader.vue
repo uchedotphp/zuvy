@@ -23,7 +23,9 @@
           src="../assets/images/icons/dark-moon.svg"
           alt="a half dark moon"
         />
-        <span class="capitalize font-medium text-sm">dark mode</span>
+        <span class="capitalize font-medium text-sm">{{
+          isDarkThemeOn ? "dark mode" : "light mode"
+        }}</span>
       </button>
     </nav>
   </header>
