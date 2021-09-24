@@ -1,9 +1,9 @@
 <template>
   <header :class="{ dark: isDarkThemeOn }">
     <nav
-      :class="'flex justify-between items-center px-4 py-10 border-b shadow-md dark:bg-darkBlueColor'"
+      :class="'flex justify-between items-center px-4 py-10 lg:px-20 lg:py-6 border-b shadow-md dark:bg-darkBlueColor'"
     >
-      <h1 class="text-black font-bold text-xl dark:text-white">
+      <h1 class="text-black font-bold text-lg lg:text-2xl dark:text-white">
         Where in the world?
       </h1>
       <button
@@ -13,13 +13,13 @@
       >
         <img
           v-if="isDarkThemeOn"
-          class="h-5"
+          class="h-5 lg:h-4"
           src="../assets/images/icons/light-moon.svg"
           alt="a half white moon"
         />
         <img
           v-else
-          class="h-5"
+          class="h-5 lg:h-4"
           src="../assets/images/icons/dark-moon.svg"
           alt="a half dark moon"
         />
