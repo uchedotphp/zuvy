@@ -1,7 +1,10 @@
 <template>
   <ul>
-    <li
+    <router-link
+      :to="{ name: 'Country' }"
+      tag="li"
       class="
+        cursor-pointer
         col-span-1
         flex flex-col
         bg-white
@@ -44,7 +47,7 @@
           </dl>
         </div>
       </div>
-    </li>
+    </router-link>
   </ul>
 </template>
 
