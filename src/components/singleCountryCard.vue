@@ -11,6 +11,7 @@
         shadow
         divide-y divide-gray-200
         max-w-xs
+        mx-auto
       "
     >
       <div class="flex-1 flex flex-col">
