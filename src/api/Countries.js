@@ -8,7 +8,7 @@ const apiClient = axios.create({
     "Content-Type": "application/json",
   },
 });
-const accessKey = process.env.ACCESS_KEY;
+const accessKey = process.env.VUE_APP_ACCESS_KEY;
 
 export default {
   fetchAllCountries() {

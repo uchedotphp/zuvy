@@ -19,9 +19,9 @@ export default new Vuex.Store({
   },
   actions: {
     fetchCountries({ commit }) {
-      Countries.fetchAllCountries().then((response) => {
-        commit("SET_COUNTRIES", response.data);
-        console.log(response);
+      Countries.fetchAllCountries().then(({ data }) => {
+        commit("SET_COUNTRIES", data);
+        console.log(data);
       });
     },
   },
