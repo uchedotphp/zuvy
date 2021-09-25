@@ -13,45 +13,32 @@
       type="button"
       class="
         inline-flex
+        border border-gray-100
         items-center
         px-6
         py-2
-        border border-transparent
-        dark:bg-darkBlueColor
-        shadow-sm
+        dark:border-transparent dark:bg-darkBlueColor
         text-sm
         leading-4
-        font-medium
-        text-white
+        dark:text-white
+        shadow-lg
         focus:outline-none
       "
     >
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-4" viewBox="0 0 512 512">
-        <title>ionicons-v5-a</title>
-        <polyline
-          points="244 400 100 256 244 112"
-          style="
-            fill: none;
-            stroke: #fff;
-            stroke-linecap: square;
-            stroke-miterlimit: 10;
-            stroke-width: 48px;
-          "
-        />
-        <line
-          x1="120"
-          y1="256"
-          x2="412"
-          y2="256"
-          style="
-            fill: none;
-            stroke: #fff;
-            stroke-linecap: square;
-            stroke-miterlimit: 10;
-            stroke-width: 48px;
-          "
-        />
-      </svg>
+      <img
+        v-if="isDarkThemeOn"
+        class="h-4"
+        src="../assets/images/icons/arrow-back-white.svg"
+        alt=""
+        srcset=""
+      />
+      <img
+        v-else
+        class="h-4"
+        src="../assets/images/icons/arrow-back-black.svg"
+        alt=""
+        srcset=""
+      />
       <span class="ml-2">Back</span>
     </button>
 
@@ -129,13 +116,13 @@
               items-center
               px-6
               py-2
-              border border-transparent
-              dark:bg-darkBlueColor
-              shadow-sm
+              border border-gray-100
+              dark:bg-darkBlueColor dark:border-transparent
+              shadow-lg
               text-sm
               leading-4
               font-medium
-              text-white
+              dark:text-white
               focus:outline-none
             "
           >
@@ -148,8 +135,12 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "CountryDetails",
+  computed: {
+    ...mapGetters({ isDarkThemeOn: "isDarkThemeOn" }),
+  },
 };
 </script>
 
