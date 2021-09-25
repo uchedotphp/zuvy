@@ -8,14 +8,28 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import TopHeader from "@/components/topHeader.vue";
 export default {
   components: {
     TopHeader,
   },
   computed: {
-    ...mapGetters({ isDarkThemeOn: "isDarkThemeOn" }),
+    ...mapGetters({
+      isDarkThemeOn: "isDarkThemeOn",
+      allCountries: "allCountries",
+    }),
+  },
+  created() {
+    // check if the countries data is available before making call to the api to fetch all countries
+    if (!this.allCountries.length) {
+      this.getAllCountries();
+    }
+  },
+  methods: {
+    ...mapActions({
+      getAllCountries: "fetchCountries",
+    }),
   },
 };
 </script>
