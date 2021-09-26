@@ -23,14 +23,12 @@ export default {
   created() {
     // check if the countries data is available before making call to the api to fetch all countries
     if (localStorage.getItem("zuvyCountries")) {
-      console.log('localstorage called');
       try {
         this.setCountries(JSON.parse(localStorage.getItem("zuvyCountries")));
       } catch (error) {
         console.log(error);
       }
     } else {
-      console.log('api called');
       this.getAllCountries();
     }
   },
