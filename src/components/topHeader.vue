@@ -4,7 +4,14 @@
   >
     <h1
       @click="$router.push('/')"
-      class="text-black font-bold text-lg lg:text-2xl dark:text-white"
+      class="
+        text-black
+        font-bold
+        text-lg
+        lg:text-2xl
+        dark:text-white
+        cursor-pointer
+      "
     >
       Where in the world?
     </h1>
