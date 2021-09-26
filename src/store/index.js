@@ -15,14 +15,20 @@ export default new Vuex.Store({
     },
     SET_COUNTRIES(state, payload) {
       state.countries = payload;
+      const countries = JSON.stringify(payload);
+      localStorage.setItem("zuvyCountries", countries);
     },
   },
   actions: {
     fetchCountries({ commit }) {
       Countries.fetchAllCountries().then((response) => {
         commit("SET_COUNTRIES", response.data);
-        console.log(response);
       });
+    },
+    // eslint-disable-next-line no-unused-vars
+    getCountryByName({ commit }, payload) {
+      const country = Countries.getCountryByName(payload);
+      return country;
     },
   },
   modules: {},

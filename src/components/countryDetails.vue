@@ -60,7 +60,7 @@
             mt-6
           "
         >
-          united states of america
+          {{ country && country.name }}
         </h3>
         <div
           class="
@@ -73,13 +73,16 @@
         >
           <dl class="mt-1 flex-grow flex flex-col space-y-2">
             <dd class="text-sm">
-              <span class="font-semibold">Population</span>: 323,947,000
+              <span class="font-semibold">Population</span>:
+              {{ country && country.population | formatNumber }}
             </dd>
             <dd class="text-sm">
-              <span class="font-semibold">Region</span>: Americas
+              <span class="font-semibold">Region</span>:
+              {{ country && country.region }}
             </dd>
             <dd class="text-sm">
-              <span class="font-semibold">Capital</span>: Washington, D.C
+              <span class="font-semibold">Capital</span>:
+              {{ country && country.capital }}
             </dd>
           </dl>
           <dl class="mt-1 flex-grow flex flex-col space-y-2">
@@ -106,28 +109,32 @@
           >
             Border Countries:
           </h3>
-          <button
-            v-for="n in 3"
-            :key="n"
-            type="button"
-            class="
-              mr-4
-              inline-flex
-              items-center
-              px-6
-              py-2
-              border border-gray-100
-              dark:bg-darkBlueColor dark:border-transparent
-              shadow-lg
-              text-sm
-              leading-4
-              font-medium
-              dark:text-white
-              focus:outline-none
-            "
-          >
-            <span class="ml-2">France</span>
-          </button>
+          <template v-if="country && country.borders">
+            <router-link
+              tag="button"
+              :to="{ name: 'Country', params: { name: border } }"
+              v-for="border in country.borders"
+              :key="border.index"
+              type="button"
+              class="
+                mr-4
+                inline-flex
+                items-center
+                px-6
+                py-2
+                border border-gray-100
+                dark:bg-darkBlueColor dark:border-transparent
+                shadow-lg
+                text-sm
+                leading-4
+                font-medium
+                dark:text-white
+                focus:outline-none
+              "
+            >
+              <span class="ml-2">{{ border }}</span>
+            </router-link>
+          </template>
         </div>
       </div>
     </div>
@@ -135,11 +142,29 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
+import { formatNumber } from "../mixins/helpers";
 export default {
   name: "CountryDetails",
+  mixins: [formatNumber],
+  data() {
+    return {
+      country: null,
+    };
+  },
   computed: {
     ...mapGetters({ isDarkThemeOn: "isDarkThemeOn" }),
+  },
+  mounted() {
+    const { name } = this.$route.params;
+    return this.getCountryByName(name).then(
+      (response) => (this.country = response)
+    );
+  },
+  methods: {
+    ...mapActions({
+      getCountryByName: "getCountryByName",
+    }),
   },
 };
 </script>

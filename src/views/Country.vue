@@ -5,8 +5,8 @@
 <script>
 import countryDetails from "@/components/countryDetails.vue";
 export default {
+  name: "Country",
   components: { countryDetails },
-  name: "CountryDetails",
 };
 </script>
 
