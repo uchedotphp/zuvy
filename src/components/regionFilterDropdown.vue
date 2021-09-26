@@ -24,7 +24,9 @@
       aria-expanded="true"
       aria-labelledby="listbox-label"
     >
-      <span class="block truncate"> Filter by Region </span>
+      <span class="block truncate">
+        {{ selected === null ? "Filter by Region" : selected }}
+      </span>
       <span
         class="
           absolute
@@ -65,7 +67,7 @@
           bg-white
           dark:bg-darkBlueColor
           shadow-lg
-          max-h-60
+          max-h-64
           rounded-md
           py-1
           text-base
@@ -78,8 +80,9 @@
         aria-activedescendant="listbox-option-3"
       >
         <li
-          v-for="n in 5"
-          :key="n"
+          v-for="n in regions"
+          :key="n.index"
+          @click.prevent="selectRegion(n)"
           class="
             dark:text-veryLightGrayColor
             dark:hover:text-darkBlueColor
@@ -96,7 +99,7 @@
           id="listbox-option-0"
           role="option"
         >
-          <span class="font-normal block truncate"> Africa </span>
+          <span class="font-normal block truncate"> {{ n }} </span>
         </li>
       </ul>
     </transition>
@@ -104,16 +107,40 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapState, mapMutations, mapGetters } from "vuex";
 export default {
   name: "RegionFilterSelect",
   data() {
     return {
       showDropDown: false,
+      selected: null,
     };
   },
   computed: {
+    ...mapState({
+      regions: (state) => state.regions,
+      searchTerm: (state) => state.searchTerm,
+      filterSearch: (state) => state.filterSearch,
+    }),
     ...mapGetters({ isDarkThemeOn: "isDarkThemeOn" }),
+  },
+  watch: {
+    filterSearch(newValue) {
+      if (newValue === "") {
+        this.selected = null;
+      }
+    },
+  },
+  methods: {
+    ...mapMutations({
+      setState: "SET_STATE",
+    }),
+    selectRegion(region) {
+      this.setState({ searchTerm: "" });
+      this.setState({ filterSearch: region });
+      this.selected = region;
+      this.showDropDown = false;
+    },
   },
 };
 </script>

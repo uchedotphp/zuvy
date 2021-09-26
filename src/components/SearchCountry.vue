@@ -46,6 +46,7 @@ export default {
         return this.searchTerm;
       },
       set(val) {
+        this.setState({ filterSearch: "" });
         this.setState({ searchTerm: val });
       },
     },
