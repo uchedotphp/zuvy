@@ -9,13 +9,13 @@ const apiClient = axios.create({
   },
 });
 const accessKey = process.env.VUE_APP_ACCESS_KEY;
+const countriesInStorage = localStorage.getItem("zuvyCountries");
 
 export default {
   fetchAllCountries() {
     return apiClient.get("/all?access_key=" + accessKey);
   },
   getCountryByName(name) {
-    const countriesInStorage = localStorage.getItem("zuvyCountries");
     if (countriesInStorage) {
       const search = name;
       if (search.length === 3) {

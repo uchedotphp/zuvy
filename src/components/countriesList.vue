@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="allCountries.length"
     role="list"
     class="
       grid grid-cols-1
@@ -17,10 +18,16 @@
       :countryData="country"
     />
   </div>
+  <p
+    v-else-if="!allCountries.length && Boolean(searchTerm)"
+    class="dark:text-whiteColor text-center w-full text-lg mt-10"
+  >
+    Your search term "{{ searchTerm }}" is not found
+  </p>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import SingleCountryCard from "./singleCountryCard.vue";
 export default {
   name: "CountriesList",
@@ -28,6 +35,7 @@ export default {
     SingleCountryCard,
   },
   computed: {
+    ...mapState({ searchTerm: (state) => state.searchTerm }),
     ...mapGetters({
       allCountries: "allCountries",
     }),
