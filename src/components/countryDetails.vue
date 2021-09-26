@@ -133,7 +133,7 @@
           >
             Border Countries:
           </h3>
-          <template v-if="country && country.borders">
+          <template v-if="country && country.borders.length">
             <router-link
               tag="button"
               :to="{ name: 'Country', params: { name: border } }"
@@ -159,6 +159,7 @@
               <span class="ml-2">{{ border }}</span>
             </router-link>
           </template>
+          <p v-else class="dark:text-whiteColor">N/A</p>
         </div>
       </div>
     </div>
