@@ -8,6 +8,8 @@ export default new Vuex.Store({
   state: {
     darkTheme: true,
     countries: [],
+    regions: [],
+    searchTerm: "",
   },
   mutations: {
     SWITCH_THEME(state) {
@@ -16,7 +18,16 @@ export default new Vuex.Store({
     SET_COUNTRIES(state, payload) {
       state.countries = payload;
       const countries = JSON.stringify(payload);
+      const regions = [];
       localStorage.setItem("zuvyCountries", countries);
+      state.countries.forEach((c) => {
+        regions.push(c.region);
+      });
+      localStorage.setItem("zuvyRegions", new Set([...regions]));
+      state.regions = new Set([...regions]);
+    },
+    SET_STATE(state, data) {
+      Object.keys(data).forEach((key) => (state[key] = data[key]));
     },
   },
   actions: {
@@ -34,6 +45,14 @@ export default new Vuex.Store({
   modules: {},
   getters: {
     isDarkThemeOn: (state) => state.darkTheme,
-    allCountries: (state) => state.countries,
+    allCountries: (state) => {
+      if (state.searchTerm) {
+        const transformName =
+          state.searchTerm.charAt(0).toUpperCase() + state.searchTerm.slice(1);
+        return state.countries.filter((c) => c.name.match(transformName));
+      }
+      return state.countries;
+    },
+    allRegions: (state) => state.regions,
   },
 });

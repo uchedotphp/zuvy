@@ -11,16 +11,24 @@
       lg:grid-cols-4
     "
   >
-    <single-country-card
-      v-for="country in allCountries"
-      :key="country.alpha3Code"
-      :countryData="country"
-    />
+    <template v-if="allCountries.length">
+      <single-country-card
+        v-for="country in allCountries"
+        :key="country.alpha3Code"
+        :countryData="country"
+      />
+    </template>
+    <p
+      v-else-if="!allCountries.length && Boolean(searchTerm)"
+      class="dark:text-whiteColor text-center"
+    >
+      Your search term "{{ searchTerm }}" is not found
+    </p>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import SingleCountryCard from "./singleCountryCard.vue";
 export default {
   name: "CountriesList",
@@ -28,6 +36,7 @@ export default {
     SingleCountryCard,
   },
   computed: {
+    ...mapState({ searchTerm: (state) => state.searchTerm }),
     ...mapGetters({
       allCountries: "allCountries",
     }),
