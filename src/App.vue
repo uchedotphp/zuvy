@@ -3,12 +3,12 @@
     <!-- Top title header -->
     <top-header />
     <!-- views -->
-    <router-view />
+    <router-view :key="$route.fullPath" />
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapMutations, mapGetters } from "vuex";
 import TopHeader from "@/components/topHeader.vue";
 export default {
   components: {
@@ -22,11 +22,20 @@ export default {
   },
   created() {
     // check if the countries data is available before making call to the api to fetch all countries
-    if (!this.allCountries.length) {
+    if (localStorage.getItem("zuvyCountries")) {
+      try {
+        this.setCountries(JSON.parse(localStorage.getItem("zuvyCountries")));
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
       this.getAllCountries();
     }
   },
   methods: {
+    ...mapMutations({
+      setCountries: "SET_COUNTRIES",
+    }),
     ...mapActions({
       getAllCountries: "fetchCountries",
     }),

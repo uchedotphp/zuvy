@@ -1,7 +1,7 @@
 <template>
   <ul>
     <router-link
-      :to="{ name: 'Country' }"
+      :to="{ name: 'Country', params: { name: countryData.name } }"
       tag="li"
       class="
         cursor-pointer
@@ -32,17 +32,20 @@
               font-medium
             "
           >
-            united states of america
+            {{ countryData.name }}
           </h3>
           <dl class="mt-1 flex-grow flex flex-col space-y-2">
             <dd class="text-sm">
-              <span class="font-semibold">Population</span>: 323,947,000
+              <span class="font-semibold">Population</span>:
+              {{ countryData.population | formatNumber }}
             </dd>
             <dd class="text-sm">
-              <span class="font-semibold">Region</span>: Americas
+              <span class="font-semibold">Region</span>:
+              {{ countryData.region }}
             </dd>
             <dd class="text-sm">
-              <span class="font-semibold">Capital</span>: Washington, D.C
+              <span class="font-semibold">Capital</span>:
+              {{ countryData.capital ? countryData.capital : "N/A" }}
             </dd>
           </dl>
         </div>
@@ -52,8 +55,16 @@
 </template>
 
 <script>
+import { formatNumber } from "../mixins/helpers";
 export default {
   name: "SingleCountryCard",
+  mixins: [formatNumber],
+  props: {
+    countryData: {
+      type: Object,
+      default: () => {},
+    },
+  },
 };
 </script>
 

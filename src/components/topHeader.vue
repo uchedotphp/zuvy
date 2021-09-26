@@ -2,7 +2,10 @@
   <div
     :class="'flex justify-between items-center px-4 py-10 lg:px-20 lg:py-6 shadow-xl dark:border-opacity-0 dark:bg-darkBlueColor'"
   >
-    <h1 class="text-black font-bold text-lg lg:text-2xl dark:text-white">
+    <h1
+      @click="$router.push('/')"
+      class="text-black font-bold text-lg lg:text-2xl dark:text-white"
+    >
       Where in the world?
     </h1>
     <button
