@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-3/ lg:w-48">
+  <div class="relative w-3/5 lg:w-48">
     <button
       @click="showDropDown = !showDropDown"
       type="button"
