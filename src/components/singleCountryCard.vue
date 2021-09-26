@@ -19,8 +19,8 @@
     >
       <div class="flex-1 flex flex-col">
         <img
-          class="flex-shrink-0"
-          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
+          class="flex-shrink-0 max-h-64 object-cover"
+          src="https://source.unsplash.com/random"
           alt=""
         />
         <div class="px-4 pt-6 pb-10 dark:text-veryLightGrayColor">
