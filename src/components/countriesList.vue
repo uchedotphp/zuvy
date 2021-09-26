@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="allCountries.length"
     role="list"
     class="
       grid grid-cols-1
@@ -11,20 +12,18 @@
       lg:grid-cols-4
     "
   >
-    <template v-if="allCountries.length">
-      <single-country-card
-        v-for="country in allCountries"
-        :key="country.alpha3Code"
-        :countryData="country"
-      />
-    </template>
-    <p
-      v-else-if="!allCountries.length && Boolean(searchTerm)"
-      class="dark:text-whiteColor text-center"
-    >
-      Your search term "{{ searchTerm }}" is not found
-    </p>
+    <single-country-card
+      v-for="country in allCountries"
+      :key="country.alpha3Code"
+      :countryData="country"
+    />
   </div>
+  <p
+    v-else-if="!allCountries.length && Boolean(searchTerm)"
+    class="dark:text-whiteColor text-center w-full text-lg mt-10"
+  >
+    Your search term "{{ searchTerm }}" is not found
+  </p>
 </template>
 
 <script>
