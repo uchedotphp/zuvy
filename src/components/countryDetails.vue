@@ -45,8 +45,8 @@
     <div class="mt-14 grid grid-cols-1 md:grid-cols-2">
       <div>
         <img
-          class="flex-shrink-0 w-full max-w-xs"
-          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
+          class="flex-shrink-0 w-full max-w-xs max-h-64 object-cover"
+          src="https://source.unsplash.com/random"
           alt=""
         />
       </div>
@@ -73,6 +73,10 @@
         >
           <dl class="mt-1 flex-grow flex flex-col space-y-2">
             <dd class="text-sm">
+              <span class="font-semibold">Native Name</span>:
+              {{ country && country.nativeName }}
+            </dd>
+            <dd class="text-sm">
               <span class="font-semibold">Population</span>:
               {{ country && country.population | formatNumber }}
             </dd>
@@ -81,19 +85,39 @@
               {{ country && country.region }}
             </dd>
             <dd class="text-sm">
+              <span class="font-semibold">Sub Region</span>:
+              {{ country && country.subregion }}
+            </dd>
+            <dd class="text-sm">
               <span class="font-semibold">Capital</span>:
               {{ country && country.capital }}
             </dd>
           </dl>
           <dl class="mt-1 flex-grow flex flex-col space-y-2">
             <dd class="text-sm">
-              <span class="font-semibold">Population</span>: 323,947,000
+              <span class="font-semibold">Top Level Domain</span>:
+              <template v-if="country">
+                <span
+                  v-for="domain in country.topLevelDomain"
+                  :key="domain.index"
+                >
+                  {{ domain }}
+                </span>
+              </template>
             </dd>
             <dd class="text-sm">
-              <span class="font-semibold">Region</span>: Americas
+              <span class="font-semibold">Currencies</span>:
+              <template v-if="country">
+                <span
+                  v-for="currency in country.currencies"
+                  :key="currency.index"
+                >
+                  {{ currency.name }}
+                </span>
+              </template>
             </dd>
             <dd class="text-sm">
-              <span class="font-semibold">Capital</span>: Washington, D.C
+              <span class="font-semibold">Languages</span>: N/A
             </dd>
           </dl>
         </div>
