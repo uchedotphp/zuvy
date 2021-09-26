@@ -74,23 +74,33 @@
           <dl class="mt-1 flex-grow flex flex-col space-y-2">
             <dd class="text-sm">
               <span class="font-semibold">Native Name</span>:
-              {{ country && country.nativeName }}
+              <span class="dark:text-gray-400">
+                {{ country && country.nativeName }}
+              </span>
             </dd>
             <dd class="text-sm">
               <span class="font-semibold">Population</span>:
-              {{ country && country.population | formatNumber }}
+              <span class="dark:text-gray-400">
+                {{ country && country.population | formatNumber }}
+              </span>
             </dd>
             <dd class="text-sm">
               <span class="font-semibold">Region</span>:
-              {{ country && country.region }}
+              <span class="dark:text-gray-400">
+                {{ country && country.region }}
+              </span>
             </dd>
             <dd class="text-sm">
               <span class="font-semibold">Sub Region</span>:
-              {{ country && country.subregion }}
+              <span class="dark:text-gray-400">
+                {{ country && country.subregion }}
+              </span>
             </dd>
             <dd class="text-sm">
               <span class="font-semibold">Capital</span>:
-              {{ country && country.capital }}
+              <span class="dark:text-gray-400">
+                {{ country && country.capital }}
+              </span>
             </dd>
           </dl>
           <dl class="mt-1 flex-grow flex flex-col space-y-2">
@@ -100,6 +110,7 @@
                 <span
                   v-for="domain in country.topLevelDomain"
                   :key="domain.index"
+                  class="dark:text-gray-400"
                 >
                   {{ domain }}
                 </span>
@@ -111,13 +122,15 @@
                 <span
                   v-for="currency in country.currencies"
                   :key="currency.index"
+                  class="dark:text-gray-400"
                 >
                   {{ currency.name }}
                 </span>
               </template>
             </dd>
             <dd class="text-sm">
-              <span class="font-semibold">Languages</span>: N/A
+              <span class="font-semibold">Languages</span>:
+              <span class="dark:text-gray-400"> N/A </span>
             </dd>
           </dl>
         </div>
@@ -142,6 +155,7 @@
               type="button"
               class="
                 mr-4
+                mb-2
                 inline-flex
                 items-center
                 px-6
@@ -159,7 +173,7 @@
               <span class="ml-2">{{ border }}</span>
             </router-link>
           </template>
-          <p v-else class="dark:text-whiteColor">N/A</p>
+          <p v-else class="dark:text-gray-400">N/A</p>
         </div>
       </div>
     </div>
