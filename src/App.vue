@@ -5,7 +5,7 @@
     <!-- views -->
     <router-view :key="$route.fullPath" />
     <pagination-buttons
-      v-if="showPagination && $route.name === 'index'"
+      v-if="showPagination && $route.name === 'Home'"
       class="px-4 py-10 lg:px-20 dark:bg-veryDarkBlueDarkColor"
     />
   </div>
