@@ -27,7 +27,7 @@
       </div>
       <input
         v-model="search"
-        :class="'focus:outline-none block w-full pl-20 pr-10 py-5 text-lg text-gray-500 shadow-xl bg-whiteColor border border-gray-400 border-opacity-20 rounded-md dark:bg-darkBlueColor font-medium dark:text-veryLightGrayColor dark:placeholder-veryLightGrayColor placeholder-gray-300'"
+        :class="'focus:outline-none block w-full pl-20 pr-10 py-5 text-lg text-gray-500 shadow-xl bg-whiteColor border border-gray-400 border-opacity-20 dark:border-transparent rounded-md dark:bg-darkBlueColor font-medium dark:text-veryLightGrayColor dark:placeholder-veryLightGrayColor placeholder-gray-300'"
         placeholder="Search for a country..."
       />
     </div>
