@@ -24,15 +24,14 @@
 >
 > - [x] Click on a border country to display details about the country.
 >****
-> - [x] Add pagination.
-> 
-> - [x] Sticky Header.
+> - [x] Pagination.
 > 
 > - [x] Enable theme switcher.
 
 
 **Added Features and Functionalities:**
 - Empty Search state on wrong country search.
+- Sticky Header.
 ---
 
 
