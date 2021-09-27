@@ -11,6 +11,11 @@ export default new Vuex.Store({
     regions: [],
     searchTerm: "",
     filterSearch: "",
+    currentPage: 1,
+    perPage: 8,
+    nextPage: 8,
+    totalCountries: 250,
+    showPagination: false,
   },
   mutations: {
     SWITCH_THEME(state) {
@@ -19,6 +24,8 @@ export default new Vuex.Store({
     SET_COUNTRIES(state, payload) {
       state.countries = payload;
       const countries = JSON.stringify(payload);
+      state.totalCountries = payload.length;
+      state.showPagination = true;
       const regions = [];
       localStorage.setItem("zuvyCountries", countries);
       state.countries.forEach((c) => {
@@ -32,6 +39,15 @@ export default new Vuex.Store({
     },
     SET_STATE(state, data) {
       Object.keys(data).forEach((key) => (state[key] = data[key]));
+    },
+    MOVE_TO_PAGE(state, payload) {
+      if (payload === "increase") {
+        state.nextPage = state.nextPage + state.perPage;
+        state.currentPage = state.currentPage + state.perPage;
+      } else if (payload === "decrease") {
+        state.nextPage = state.nextPage - state.perPage;
+        state.currentPage = state.currentPage - state.perPage;
+      }
     },
   },
   actions: {
@@ -53,13 +69,15 @@ export default new Vuex.Store({
       if (state.searchTerm) {
         const transformName =
           state.searchTerm.charAt(0).toUpperCase() + state.searchTerm.slice(1);
-        return state.countries.filter((c) => c.name.match(transformName));
+        return state.countries
+          .filter((c) => c.name.match(transformName))
+          .slice(state.currentPage - 1, state.nextPage);
       } else if (state.filterSearch) {
-        return state.countries.filter((c) =>
-          c.region.match(state.filterSearch)
-        );
+        return state.countries
+          .filter((c) => c.region.match(state.filterSearch))
+          .slice(state.currentPage - 1, state.nextPage);
       }
-      return state.countries;
+      return state.countries.slice(state.currentPage - 1, state.nextPage);
     },
     allRegions: (state) => state.regions,
   },

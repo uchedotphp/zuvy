@@ -4,17 +4,26 @@
     <top-header />
     <!-- views -->
     <router-view :key="$route.fullPath" />
+    <pagination-buttons
+      v-if="showPagination && $route.name === 'index'"
+      class="px-4 py-10 lg:px-20 dark:bg-veryDarkBlueDarkColor"
+    />
   </div>
 </template>
 
 <script>
-import { mapActions, mapMutations, mapGetters } from "vuex";
+import { mapState, mapActions, mapMutations, mapGetters } from "vuex";
 import TopHeader from "@/components/topHeader.vue";
+import paginationButtons from "@/components/paginationButtons.vue";
 export default {
   components: {
     TopHeader,
+    paginationButtons,
   },
   computed: {
+    ...mapState({
+      showPagination: (state) => state.showPagination,
+    }),
     ...mapGetters({
       isDarkThemeOn: "isDarkThemeOn",
       allCountries: "allCountries",

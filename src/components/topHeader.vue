@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="'flex justify-between items-center px-4 py-10 lg:px-20 lg:py-6 shadow-xl dark:border-opacity-0 dark:bg-darkBlueColor'"
+    :class="'flex justify-between items-center px-4 py-10 lg:px-20 lg:py-6 shadow-xl dark:border-opacity-0 dark:bg-darkBlueColor sticky top-0 z-50 bg-white'"
   >
     <h1
       @click="$router.push('/')"
