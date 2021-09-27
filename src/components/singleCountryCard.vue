@@ -37,15 +37,21 @@
           <dl class="mt-1 flex-grow flex flex-col space-y-2">
             <dd class="text-sm">
               <span class="font-semibold">Population</span>:
-              {{ countryData.population | formatNumber }}
+              <span class="dark:text-gray-400">{{
+                countryData.population | formatNumber
+              }}</span>
             </dd>
             <dd class="text-sm">
               <span class="font-semibold">Region</span>:
-              {{ countryData.region }}
+              <span class="dark:text-gray-400">
+                {{ countryData.region }}
+              </span>
             </dd>
             <dd class="text-sm">
               <span class="font-semibold">Capital</span>:
-              {{ countryData.capital ? countryData.capital : "N/A" }}
+              <span class="dark:text-gray-400">
+                {{ countryData.capital ? countryData.capital : "N/A" }}
+              </span>
             </dd>
           </dl>
         </div>
