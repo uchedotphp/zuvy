@@ -11,6 +11,11 @@ export default new Vuex.Store({
     regions: [],
     searchTerm: "",
     filterSearch: "",
+    currentPage: 1,
+    perPage: 8,
+    nextPage: 8,
+    totalCountries: 250,
+    showPagination: false,
   },
   mutations: {
     SWITCH_THEME(state) {
@@ -19,6 +24,8 @@ export default new Vuex.Store({
     SET_COUNTRIES(state, payload) {
       state.countries = payload;
       const countries = JSON.stringify(payload);
+      state.totalCountries = payload.length;
+      state.showPagination = true;
       const regions = [];
       localStorage.setItem("zuvyCountries", countries);
       state.countries.forEach((c) => {
@@ -32,6 +39,15 @@ export default new Vuex.Store({
     },
     SET_STATE(state, data) {
       Object.keys(data).forEach((key) => (state[key] = data[key]));
+    },
+    MOVE_TO_PAGE(state, payload) {
+      if (payload === "increase") {
+        state.nextPage = state.nextPage + state.perPage;
+        state.currentPage = state.currentPage + state.perPage;
+      } else if (payload === "decrease") {
+        state.nextPage = state.nextPage - state.perPage;
+        state.currentPage = state.currentPage - state.perPage;
+      }
     },
   },
   actions: {
@@ -61,6 +77,8 @@ export default new Vuex.Store({
       }
       return state.countries;
     },
+    paginateCountryResult: (state, getters) =>
+      getters.allCountries.slice(state.currentPage - 1, state.nextPage),
     allRegions: (state) => state.regions,
   },
 });
