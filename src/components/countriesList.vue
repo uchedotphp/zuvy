@@ -37,7 +37,7 @@ export default {
   computed: {
     ...mapState({ searchTerm: (state) => state.searchTerm }),
     ...mapGetters({
-      allCountries: "allCountries",
+      allCountries: "paginateCountryResult",
     }),
   },
 };

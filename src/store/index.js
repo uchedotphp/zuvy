@@ -69,16 +69,16 @@ export default new Vuex.Store({
       if (state.searchTerm) {
         const transformName =
           state.searchTerm.charAt(0).toUpperCase() + state.searchTerm.slice(1);
-        return state.countries
-          .filter((c) => c.name.match(transformName))
-          .slice(state.currentPage - 1, state.nextPage);
+        return state.countries.filter((c) => c.name.match(transformName));
       } else if (state.filterSearch) {
-        return state.countries
-          .filter((c) => c.region.match(state.filterSearch))
-          .slice(state.currentPage - 1, state.nextPage);
+        return state.countries.filter((c) =>
+          c.region.match(state.filterSearch)
+        );
       }
-      return state.countries.slice(state.currentPage - 1, state.nextPage);
+      return state.countries;
     },
+    paginateCountryResult: (state, getters) =>
+      getters.allCountries.slice(state.currentPage - 1, state.nextPage),
     allRegions: (state) => state.regions,
   },
 });

@@ -9,10 +9,10 @@
         <span class="font-medium">{{ currentPage }}</span>
         to
         <span class="font-medium">{{
-          nextPage > totalItems ? totalItems : nextPage
+          nextPage > allCountries.length ? allCountries.length : nextPage
         }}</span>
         of
-        <span class="font-medium">{{ totalItems }}</span>
+        <span class="font-medium">{{ allCountries.length }}</span>
         results
       </p>
     </div>
@@ -38,7 +38,7 @@
         Previous
       </button>
       <button
-        :class="{ invisible: nextPage > totalItems }"
+        :class="{ invisible: nextPage > allCountries.length }"
         class="
           ml-3
           relative
@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapGetters } from "vuex";
 export default {
   name: "PaginationButtons",
   computed: {
@@ -71,6 +71,9 @@ export default {
       totalItems: (state) => state.totalCountries,
       currentPage: (state) => state.currentPage,
       nextPage: (state) => state.nextPage,
+    }),
+    ...mapGetters({
+      allCountries: "allCountries",
     }),
   },
   methods: {
