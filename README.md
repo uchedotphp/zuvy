@@ -20,11 +20,13 @@
 >
 > - [x] Filter countries by region.
 >
-> - [x] Click on a country to see more detailed information on a separate page
+> - [x] Click on a country to see more detailed information on a separate page.
 >
-> - [x] Click on a border country to display details about the country
+> - [x] Click on a border country to display details about the country.
 >****
-> - [ ] Add pagination
+> - [x] Add pagination.
+> 
+> - [x] Sticky Header.
 > 
 > - [x] Enable theme switcher.
 
